@@ -123,7 +123,7 @@ const Index = () => {
       }
     ]);
     setCurrentChatId('new-' + Date.now());
-    setSidebarOpen(false); // Close sidebar on mobile after selection
+    setSidebarOpen(false);
   };
 
   const loadChatHistory = (chat: ChatHistory) => {
@@ -142,7 +142,11 @@ const Index = () => {
       }
     ]);
     setCurrentChatId(chat.id);
-    setSidebarOpen(false); // Close sidebar on mobile after selection
+    setSidebarOpen(false);
+  };
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
   };
 
   return (
@@ -158,16 +162,16 @@ const Index = () => {
       {/* Sidebar */}
       <div className={`${
         sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-      } lg:translate-x-0 fixed lg:relative z-50 lg:z-auto transition-transform duration-300 ease-in-out w-80 lg:w-80 xl:w-96 h-full bg-white/90 backdrop-blur-sm border-r border-gray-200/50 flex flex-col shadow-xl`}>
+      } lg:translate-x-0 fixed lg:relative z-50 lg:z-auto transition-transform duration-300 ease-in-out w-full sm:w-80 lg:w-80 xl:w-96 h-full bg-white/90 backdrop-blur-sm border-r border-gray-200/50 flex flex-col shadow-xl`}>
         {/* Close button for mobile */}
         <div className="lg:hidden absolute top-4 right-4 z-10">
           <Button
             variant="ghost"
             size="sm"
             onClick={() => setSidebarOpen(false)}
-            className="p-2"
+            className="p-2 h-8 w-8"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </Button>
         </div>
 
@@ -214,8 +218,8 @@ const Index = () => {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="mr-2 lg:mr-4 hover:bg-gray-100/50 hover:scale-105 transition-all duration-200 p-2"
+              onClick={toggleSidebar}
+              className="mr-2 lg:mr-4 hover:bg-gray-100/50 hover:scale-105 transition-all duration-200 p-2 h-8 w-8"
             >
               <Menu className="w-4 h-4 lg:w-5 lg:h-5" />
             </Button>
@@ -245,7 +249,7 @@ const Index = () => {
                 key={message.id}
                 className={`flex ${message.isUser ? 'justify-end' : 'justify-start'} animate-fade-in`}
               >
-                <div className={`flex max-w-[85%] sm:max-w-[80%] lg:max-w-[70%] ${message.isUser ? 'flex-row-reverse' : 'flex-row'}`}>
+                <div className={`flex max-w-[90%] sm:max-w-[85%] lg:max-w-[70%] ${message.isUser ? 'flex-row-reverse' : 'flex-row'}`}>
                   <div className={`flex-shrink-0 ${message.isUser ? 'ml-2 lg:ml-3' : 'mr-2 lg:mr-3'}`}>
                     <div className={`w-8 h-8 lg:w-10 lg:h-10 rounded-xl flex items-center justify-center shadow-lg ${
                       message.isUser 
@@ -278,7 +282,7 @@ const Index = () => {
             {/* Typing Indicator */}
             {isTyping && (
               <div className="flex justify-start animate-fade-in">
-                <div className="flex max-w-[85%] sm:max-w-[80%] lg:max-w-[70%]">
+                <div className="flex max-w-[90%] sm:max-w-[85%] lg:max-w-[70%]">
                   <div className="flex-shrink-0 mr-2 lg:mr-3">
                     <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 flex items-center justify-center shadow-lg">
                       <Bot className="w-4 h-4 lg:w-5 lg:h-5 text-white" />
@@ -315,7 +319,7 @@ const Index = () => {
                   onClick={handleSendMessage}
                   disabled={!inputValue.trim() || isTyping}
                   size="sm"
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-300 disabled:to-gray-400 rounded-lg shadow-md hover:scale-105 transition-all duration-200 p-2"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-300 disabled:to-gray-400 rounded-lg shadow-md hover:scale-105 transition-all duration-200 p-2 h-8 w-8"
                 >
                   <Send className="w-4 h-4" />
                 </Button>
