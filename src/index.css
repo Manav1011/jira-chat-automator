@@ -5,6 +5,20 @@
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
 
+@layer components {
+  .markdown-content table {
+    display: table !important;
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+  
+  .markdown-content th,
+  .markdown-content td {
+    display: table-cell !important;
+    vertical-align: middle !important;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
